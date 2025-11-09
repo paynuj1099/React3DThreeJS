@@ -4,14 +4,28 @@ import "./App.css";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    // Trigger entrance animation
     setTimeout(() => setIsLoaded(true), 100);
   }, []);
 
+  const handleAlert = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowAlert(true);
+  };
+
   return (
     <div className="app-container">
+      {showAlert && (
+        <div className="custom-alert-overlay">
+          <div className="custom-alert">
+            <button className="custom-alert-close" onClick={() => setShowAlert(false)} aria-label="Close alert">&times;</button>
+            <div className="custom-alert-title">Coming Soon</div>
+            <div className="custom-alert-message">This feature will be available soon.</div>
+          </div>
+        </div>
+      )}
       {/* Hero Section */}
       <section className={`hero ${isLoaded ? "loaded" : ""}`}>
         <div className="hero-content">
@@ -29,7 +43,7 @@ function App() {
               comfort. Our latest collection redefines what footwear can be.
             </p>
             <div className="cta-buttons">
-              <button className="btn btn-primary">
+              <button className="btn btn-primary" onClick={handleAlert}>
                 Explore Collection
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +59,7 @@ function App() {
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
-              <button className="btn btn-secondary">
+              <button className="btn btn-secondary" onClick={handleAlert}>
                 Watch Video
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
