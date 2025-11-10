@@ -1,5 +1,6 @@
 import { Suspense, useState, useEffect } from "react";
 import Scene from "./components/Scene";
+import { Analytics } from '@vercel/analytics/react'
 import "./App.css";
 
 function App() {
@@ -189,6 +190,9 @@ function App() {
       <div className="bg-blur blur-1"></div>
       <div className="bg-blur blur-2"></div>
       <div className="bg-blur blur-3"></div>
+      
+      {/* Analytics */}
+      <Analytics />
     </div>
   );
 }
